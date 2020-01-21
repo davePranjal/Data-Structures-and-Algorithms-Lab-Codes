@@ -1,4 +1,4 @@
-/* Call functions defined in seqListOps.c */
+/* Call functions defined in seqListOps.c*/
 #include <stdio.h>
 #include "seqListOps.h"
 
