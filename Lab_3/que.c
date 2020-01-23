@@ -36,6 +36,11 @@ Queue addQ(Queue q , Task t){
 		q.Rear = n;
 		return q;
 }
+
+void printTask(Task t){
+	printf("Task id :  %d  Priority :  %d  \n", t.id, t.priority);
+}
+
 int lengthQ(Queue q){
 	Element *n = q.Front;
 	int count = 0;

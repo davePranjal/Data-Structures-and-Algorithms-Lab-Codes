@@ -17,5 +17,4 @@ bool isEmptyMQ(MultiQ mq);
 int sizeMQ(MultiQ mq) ;
 int sizeMQbyPriority(MultiQ mq, int p);
 Queue getQueueFromMQ(MultiQ mq,  int p);
-void printTask(Task t);
 void printMQ(MultiQ mq);

@@ -52,9 +52,7 @@ int sizeMQbyPriority(MultiQ mq, int p){
 Queue getQueueFromMQ(MultiQ mq,  int p){
 	return mq.Qarray[p-1];
 }
-void printTask(Task t){
-	printf("Task id :  %d  Priority :  %d  \n", t.id, t.priority);
-}
+
 void printMQ(MultiQ mq){
 	Task t;
 	int size = mq.size,i;

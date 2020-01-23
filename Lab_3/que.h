@@ -16,11 +16,12 @@ struct Queue{
 	struct Element *Rear;
 };
 typedef struct Queue Queue;
-typedef struct Element Element; 
+typedef struct Element Element;
 Queue newQ();
 bool isEmptyQ(Queue q);
 Queue delQ(Queue q);
 Task front(Queue q);
 Queue addQ(Queue q , Task t);
 int lengthQ(Queue q);
-
+void printTask(Task t);
+void printQ(Queue q);

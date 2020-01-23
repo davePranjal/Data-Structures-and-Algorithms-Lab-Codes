@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include<sys/time.h>
 //#include "que.h"
 #include "multiq.h"
 MultiQ loadData(FILE *f);
@@ -7,10 +8,22 @@ MultiQ testDel(int num, MultiQ mq);
 int main(int num, char *args[]){
 	FILE *f = fopen(args[1], "r");
 	MultiQ mq = createMQ(10);
+//Queue q = newQ();
+	struct timeval t1,t2,t3,t4;
+	double elaspsedTime;
+	gettimeofday(&t1,NULL);
 	mq = loadData(f);
-	fclose(f);
-	//Queue q = newQ();
-printMQ(mq);
+	gettimeofday(&t2,NULL);
+//	elaspsedTime = (t2.tv_sec - t1.tv_sec)*1000.0;
+elaspsedTime+= (t2.tv_usec - t1.tv_sec)/1000.0;
+	printf("Total time in loading data is %d ms. \n", elaspsedTime);
+	//printMQ(mq);
+	gettimeofday(&t3,NULL);
+	mq = testDel(10,mq);
+	gettimeofday(&t4,NULL);
+	elaspsedTime+= (t4.tv_usec - t3.tv_sec)/1000.0;
+	printf("Total time  in deletion  is %d ms. \n", elaspsedTime);
+	//printMQ(mq);
 	// bool b ;
 	// 	b = isEmptyMQ(mq);
 	// 	printf(b? "true" : "false");
@@ -41,21 +54,13 @@ printMQ(mq);
 // 	// q = delQ(q);
 // int r1 = sizeMQbyPriority(mq, 1);
 //  printf("%d\n",r1 );
-
+fclose(f);
 }
 MultiQ loadData(FILE *f){
-	int i[20];
-	int j[20];
-	int count = 0,k;
-	while( !feof(f)){
-			fscanf(f, "%d,%d", &i[count], &j[count]);
-			count++;
-		}
-		MultiQ mq = createMQ(count);
-		for(k= 0; k<count; k++){
-			Task t;
-			t.priority = j[k];
-			t.id = i[k];
+	MultiQ mq = createMQ(10);
+	Task t;
+	while(!feof(f)){
+			fscanf(f, "%d,%d", &t.id, &t.priority);
 			mq = addMQ(mq,t);
 		}
 		return mq;
