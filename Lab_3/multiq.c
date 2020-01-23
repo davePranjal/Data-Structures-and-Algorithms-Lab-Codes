@@ -1,3 +1,4 @@
+/* Functions for operating on MultiQ */
 #include "multiq.h"
 MultiQ createMQ(int num){
 	MultiQ mq;

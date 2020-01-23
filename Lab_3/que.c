@@ -1,3 +1,4 @@
+/* Functions for working on que.c */ 
 #include "que.h"
 
 
