@@ -2,27 +2,24 @@
 #include "linkedlist_ops.h"
 
 Ls createList(int N){
-if (N < 10e6)
-	return X;
-int i,num;
-Ls list;
-list.size = N;
-list.head = NULL;
-for(i=0; i<N; i++){
-
-	num = rand();
-	list = createNode(num, list);
-}
-return list;
+//if (N < 10e6)
+	//return X;
+	int i;
+	Ls list;
+	list.size = N;
+	list.head = NULL;
+	srand(time(NULL));
+	for(i=0; i<N; i++)
+		list = createNode(rand(), list);
+	return list;
 }
 
 Ls createNode(int ele, Ls l){
 	NODE * nptr = myalloc(1);
-	if(l.head != NULL)
-		nptr->next = l.head->next;
+	nptr->next = l.head;
 	l.head = nptr;
 	nptr->ele = ele;
-return l;
+	return l;
 }
 
 void printFirst100(Ls list){
@@ -32,9 +29,12 @@ for(i=0;i<100;i++){
 	ele = nptr->ele;
 	printf("%d \n" , ele);
 	nptr = nptr->next;
+	if(nptr == NULL)
+	break;
 }
 }
-Ls creteCycle(Ls list){
+Ls createCycle(Ls list){
+srand(time(NULL));
 if(rand()%2 == 1){
 	return list;
 }
