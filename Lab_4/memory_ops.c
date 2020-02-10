@@ -2,7 +2,7 @@
 #include "memory_ops.h"
 
 int total_mem = 0;
-
+int return_mem();
 NODE * myalloc(int length){
 total_mem = total_mem  + sizeof(NODE)*length;
 NODE *ptr = (NODE *) malloc(sizeof(NODE)*length) ;

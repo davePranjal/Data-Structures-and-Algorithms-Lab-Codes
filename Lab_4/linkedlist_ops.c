@@ -1,5 +1,6 @@
 //#include "memory_ops.h"
-#include "linkedlist_ops.h"
+//#include "linkedlist_ops.h"
+#include "cycle.h"
 
 Ls createList(int N){
 //if (N < 10e6)
@@ -49,4 +50,51 @@ while(count != link_no){
 	}
 q->next = p;
 return list;
+}
+Ls makeCircularList(Ls list){
+	 bool b = testCyclic(list);
+	 if(!b){
+		 NODE *q = list.head;
+		 while(q->next != NULL)
+		 		q = q->next;
+			q->next = list.head;
+	 }
+	 if(b){
+		 NODE * hare = list.head;
+		 NODE * tort = list.head;
+		 NODE * prev = list.head;
+		 hare = hare->next->next;
+		 tort = tort->next;
+		 while(1)
+		 if(hare == tort  && hare!= NULL && tort != NULL)
+			 break;
+		 tort = list.head;
+		 while(hare != tort)
+		 {
+			hare = hare->next;
+			tort = tort->next;
+			myfree(prev, 1);
+			prev = tort;
+		 }
+		 list.head = hare;
+	 }
+	 return list;
+}
+bool testCircular(Ls list){
+	int count = 0;
+	NODE *one = list.head->next;
+	bool b = false;
+	if(!testCyclic(list))
+	return false;
+	while(1){
+		if(one == list.head){
+			b = true;
+			break;
+		}
+		if(count > list.size)
+			break;
+		count++;
+		one  = one->next;
+	}
+	return b; 
 }
